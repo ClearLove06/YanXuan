@@ -25,7 +25,6 @@
     </div>
     <div class="find-tap">
       <ul>
-        <!--<li v-for="(li,index) in FindTab" :key="index" :class="{active:index === $route.params.id}">{{li.tabName}}</li>-->
         <li class="find-headerTab"
             v-for="(li,index) in FindTab" :key="index"
             :class="{active:$route.path ===route[index] }"
@@ -35,7 +34,10 @@
       </ul>
     </div>
     <div class="find-content">
-      <router-view/>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
+
     </div>
   </div>
 </template>

@@ -5,4 +5,13 @@ export const RECEIVE_TOGGLEID = 'receive_toggleid'
 export const RECEIVE_FINDTAB = 'receive_findtab' //识物tap
 export const RECEIVE_RECMANUAL = 'receive_recmanual' //识物list
 export const RECEIVE_TABDATA = 'receive_tabdata' //识物达人
+export const RECEIVE_GETUPDATE = 'receive_getupdate' //识物上新
+export const RECEIVE_HOMEDATA = 'receive_homedata' //识物上新
+
+export const RECEIVE_DATAONE = 'receive_dataone' //识物上新
+export const RECEIVE_DATATWO = 'receive_datatwo' //识物上新
+export const RECEIVE_DATATHREE = 'receive_datathree' //识物上新
+
+
+
 

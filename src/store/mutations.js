@@ -6,7 +6,12 @@ import {
   RECEIVE_TOGGLEID,
   RECEIVE_FINDTAB,
   RECEIVE_RECMANUAL,
-  RECEIVE_TABDATA
+  RECEIVE_TABDATA,
+  RECEIVE_GETUPDATE,
+  RECEIVE_HOMEDATA,
+  RECEIVE_DATAONE,
+  RECEIVE_DATATWO,
+  RECEIVE_DATATHREE
 }from './mutations-type'
 
 export default {
@@ -28,6 +33,23 @@ export default {
     state.FindList=FindList
   },
   [RECEIVE_TABDATA](state,{TabData}){
-    state.TabData=TabData
-  }
+    state.TabData = state.TabData.concat(TabData)
+  },
+  [RECEIVE_GETUPDATE](state,{Update}){
+    state.Update=state.Update.concat(Update)
+  },
+  [RECEIVE_HOMEDATA](state,{HomeData}){
+    state.HomeData=state.HomeData.concat(HomeData)
+  },
+
+
+  [RECEIVE_DATAONE](state,{shareDataOne}){
+    state.shareDataOne=shareDataOne
+  },
+  [RECEIVE_DATATWO](state,{shareDataTwo}){
+    state.shareDataTwo=state.shareDataTwo.concat(shareDataTwo)
+  },
+  [RECEIVE_DATATHREE](state,{shareDataThree}){
+    state.shareDataThree=shareDataThree
+  },
 }

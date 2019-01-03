@@ -40,7 +40,7 @@
     mounted(){
       this.$store.dispatch('getSortList')
       new BScroll('.sort-left',{
-        click:true
+        click:true,
       })
     },
     methods: {

@@ -1,6 +1,6 @@
 <template>
   <div class="better-scroll">
-    <div class="box">
+    <div class="box" ref="picsUl">
       <div class="content-list" v-for="(li,index) in TabData">
         <TypeOne :li="li" v-if="li.style===1"/>
         <TypeTwo :li="li" v-if="li.style===2"/>
@@ -15,27 +15,33 @@
   import TypeOne from '../../../components/FindList/TypeOne/TypeOne.vue'
   import TypeTwo from '../../../components/FindList/TypeTwo/TypeTwo.vue'
   export default {
-    data(){
-      return{
-        page:1,
-        size:5,
-        tabId:4,
-      }
-    },
     mounted(){
-      const{page,size,tabId} =this
-      this.$store.dispatch('getTabData',{page,size,tabId})
-        new BScroll('.better-scroll',{
-          click:true,
-          pullUpLoad: {
-
-          }
+      this.$store.dispatch('getTabData')
+      this.scroll = new BScroll('.better-scroll',{
+        click:true,
+        pullUpLoad: true
+      })
+    },
+    watch:{
+      TabData(){
+        this.$nextTick(()=>{
+          this.scroll = new BScroll('.better-scroll',{
+            click:true,
+            probeType:2,
+            pullUpLoad:{
+              threshold: 50
+            }
+          })
+          this.scroll.on('pullingUp',()=>{
+              this.$store.dispatch('getTabData',()=>{
+                this.scroll.finishPullUp()
+              })
+          })
         })
-
+      }
     },
     computed:{
       ...mapState(['TabData']),
-
     },
     components:{
       TypeOne,
@@ -45,8 +51,9 @@
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .better-scroll
-    height 15rem
+    height 530px
     .box
+      position relative
       .content-list
         width: 100%;
         background: #fff;

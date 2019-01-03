@@ -1,59 +1,66 @@
 <template>
-  <div>
-    <PersonHeader/>
-    <div class="Person-content">
-      <div class="Person-login">
-        <div class="log">
-          <img src="//yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt="">
-        </div>
-        <div class="Person-input">
-          <div class="Person-phone" @click="$router.replace('phone')">
-            <i class="iconfont icon-shouji1"></i>
-            <span>手机号码登录</span>
-          </div>
-          <div class="Person-postbox ">
-            <i class="iconfont icon-xinfeng"></i>
-            <span>邮箱账号登录</span>
-          </div>
-          <div class="Person-register">
-            <span >手机号快捷注册</span>
-            <i class="iconfont icon-jiantouyou"></i>
-          </div>
-        </div>
-      </div>
-      <div class="qq-wx">
-        <div>
-          <span>
-            <i class="iconfont icon-weixin"></i>
-            <span>微信</span>
-          </span>
-        </div>
-        <div>
-          <span>
-             <i class="iconfont icon-QQ"></i>
-            <span>QQ</span>
-          </span>
-        </div>
-        <div>
-          <span>
-             <i class="iconfont icon-weibo"></i>
-            <span>微博</span>
-          </span>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <h2>邮箱</h2>
 </template>
 <script>
-  import PersonHeader from '../../components/PersonHeader/PersonHeader.vue'
-  export default {
-    components:{
-      PersonHeader
-    }
-  }
+  export default {}
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+  .Person-header
+    height: 1.3434rem;
+    position: fixed !important;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    >header
+      .header-topbar
+        height: 1.3434rem;
+        background-color: #fafafa;
+        box-sizing: border-box;
+        border-bottom: .01rem solid #d9d9d9
+        .header-row
+          box-sizing: border-box;
+          margin: auto;
+          overflow: hidden;
+          height: 1.3434rem;
+          padding: 0 .26rem 0 .24rem;
+          .header-left
+            display block
+            float left
+            .iconfont
+              font-size 0.6rem
+
+          .header-content
+            position: absolute;
+            width: 3.2rem;
+            height: 100%;
+            line-height: 1.3434rem
+            text-align: center;
+            left: 50%;
+            top: 0;
+            margin-left: -1.6rem;
+            font-size: .28rem;
+            z-index: 1;
+            >span
+              line-height: 1.3434rem
+              padding: 0 .16rem;
+              vertical-align: middle;
+              font-size: .52rem;
+              color: #2C2C2C
+              font-family '宋体'
+              font-weight: bold;
+          .header-right
+            float: right;
+            line-height 1rem;
+            .left
+              float right
+              .iconfont
+                font-size 0.6rem
+            .right
+              float right
+              .iconfont
+                font-size 0.6rem
+                margin-right: .4rem
 
   .Person-content
     margin-top 1.3434rem;
