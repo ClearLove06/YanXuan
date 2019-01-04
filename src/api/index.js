@@ -2,6 +2,7 @@
 import ajax from './ajax'
 
 const BASE = '/yanxuan';
+const SEARCH = '/search'
 
 export const reqCateList = ()=> ajax('/cateList')
 export const reqSortList = ()=> ajax('/fenLei')
@@ -17,5 +18,10 @@ export const reqDataOne = ()=> ajax(BASE+'/look/homeData.json')
 export const reqDataTwo = (page,size,type)=> ajax(BASE+'/look/getList.json',{page,size,type})
 //晒单3
 export const reqDataThree = (id)=> ajax(BASE+'/look/getCollection.json',{id})
+//热门搜索
+export const reqSearch = () => ajax(SEARCH+'/search/init.json')
+
+//输入搜索
+export const reqSearchList = (keywordPrefix) => ajax(SEARCH+'/search/searchAutoComplete.json',{keywordPrefix})
 
 

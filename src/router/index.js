@@ -11,6 +11,7 @@ import Expert from '../pages/Find/FindTab/Expert.vue'
 import Update from '../pages/Find/FindTab/Update.vue'
 import Share from '../pages/Find/FindTab/Share.vue'
 import Home from '../pages/Find/FindTab/Home.vue'
+import Search from '../pages/Search/ search.vue'
 
 import Phone from '../pages/Person/login/Phone.vue'
 import PostBox from '../pages/Person/login/PostBox.vue'
@@ -29,6 +30,10 @@ export default new VueRouter({
       meta: {
         showFooter: true
       }
+    },
+    {
+      path:'/search',
+      component:Search,
     },
     {
       path:'/sort',
@@ -100,6 +105,14 @@ export default new VueRouter({
     {
       path:'/phone',
       component:Phone,
+    },
+    {
+      path:'/postbox',
+      component:PostBox,
+    },
+    {
+      path:'/register',
+      component:Register,
     },
     {
       path:'/',

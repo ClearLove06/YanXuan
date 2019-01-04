@@ -2,7 +2,7 @@
   <div class="sort">
     <!--头部搜索栏-->
     <div class="sort-header">
-      <div>
+      <div @click="$router.push('/search')">
         <i></i>
         <span>搜索商品, 共20018款好物</span>
       </div>
@@ -54,6 +54,7 @@
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+  @import "../../common/stylus/mixins.styl"
   .sort
     .sort-header
       position fixed
@@ -65,6 +66,7 @@
       padding: 0 .4rem;
       background-color: #fff;
       padding-top 0.2rem
+      bottom-border-1px(#eee)
       >div
         display flex
         align-items: center;
@@ -118,7 +120,8 @@
             overflow: hidden;
             box-sizing border-box
     .sort-right
+      height 600px
       margin-left: 2.16rem;
-      padding: 1.4rem .4rem .28rem
+      padding: 0.4rem .4rem .28rem
       background #ffffff
 </style>

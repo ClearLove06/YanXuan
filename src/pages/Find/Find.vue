@@ -16,7 +16,7 @@
                 <i class="iconfont icon-gouwuche"></i>
               </div>
               <div class="right">
-                <i class="iconfont icon-fangdajing"></i>
+                <i class="iconfont icon-fangdajing" @click="$router.push('/Search')"></i>
               </div>
             </div>
           </div>

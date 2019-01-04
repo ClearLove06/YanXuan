@@ -39,9 +39,7 @@
         this.$nextTick(()=>{
           this.scroll = new BScroll ('.update-scroll',{
             click:true,
-            pullUpLoad:{
-              threshold: 50
-            }
+            pullUpLoad:true
           })
           this.scroll.on('pullingUp',()=>{
             this.$store.dispatch('getUpdate',()=>{

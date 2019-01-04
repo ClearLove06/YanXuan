@@ -29,7 +29,7 @@
         <div class="shopping-img"></div>
         <div class="shopping-text">
           <div class="add">去添加点什么吧</div>
-          <div class="loading">登录</div>
+          <div class="loading" @click="$router.push('/Person')">登录</div>
         </div>
       </div>
     </div>

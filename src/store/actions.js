@@ -7,7 +7,9 @@ import {
   reqTabData,
   reqDataOne,
   reqDataTwo,
-  reqDataThree
+  reqDataThree,
+  reqSearch,
+  reqSearchList
 } from '../api'
 import {
   RECEIVE_CATELIST,
@@ -19,7 +21,9 @@ import {
   RECEIVE_HOMEDATA,
   RECEIVE_DATAONE,
   RECEIVE_DATATWO,
-  RECEIVE_DATATHREE
+  RECEIVE_DATATHREE,
+  RECEIVE_REQSEARCH,
+  RECEIVE_SEARCHLIST
 }from './mutations-type'
 let num = 0
 let page = 0
@@ -91,6 +95,7 @@ export default {
       typeof cb==='Function'&&cb()
     }
   },
+  //  晒新页面头部
   async getDataOne({commit}){
     const result = await reqDataOne()
     if(result.code === "200"){
@@ -107,7 +112,7 @@ export default {
       typeof cb==='Function'&&cb()
     }
   },
-
+//  晒新页面list
   async getDataThree({commit,state},{id}){
     const result = await reqDataThree(id)
     if(result.code ==="200"){
@@ -115,5 +120,22 @@ export default {
       commit(RECEIVE_DATATHREE,{shareDataThree})
     }
   },
+//  热搜
+  async getSearchs({commit}){
+    const result = await reqSearch()
+    if(result.code === "200"){
+      const Searchs = result.data
+      commit(RECEIVE_REQSEARCH,{Searchs})
+    }
+
+  },
+//  搜索
+  async getSearchList({commit},keywordPrefix){
+    const result = await reqSearchList(keywordPrefix)
+    if(result.code === '200'){
+      const SearchList = result.data
+      commit(RECEIVE_SEARCHLIST,{SearchList})
+    }
+  }
 
 }

@@ -11,10 +11,10 @@
           </div>
           <div class="header-right">
             <div class="left">
-              <i class="iconfont icon-gouwuche"></i>
+              <i class="iconfont icon-gouwuche" @click="$router.replace('/Shopping')"></i>
             </div>
             <div class="right">
-              <i class="iconfont icon-fangdajing"></i>
+              <i class="iconfont icon-fangdajing" @click="$router.push('/Search')"></i>
             </div>
           </div>
         </div>

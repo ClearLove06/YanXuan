@@ -1,7 +1,7 @@
 <template>
-  <div>
-      <div class="Sort">
-      </div>
+  <div class="Sort-scrollC">
+    <div>
+      <div class="Sort"></div>
       <div class="SortList">
         <ul>
           <li v-for="(list,index) in SortLi" :key="index">
@@ -12,10 +12,12 @@
           </li>
         </ul>
       </div>
+    </div>
   </div>
 </template>
 <script>
   import {mapState} from 'vuex'
+  import BScroll from 'better-scroll'
   export default {
     data(){
       return {
@@ -31,6 +33,11 @@
     watch:{
      sortList () {
        this.SortLi=this.sortList[this.indexs].subCateList
+       this.$nextTick(()=>{
+         new BScroll('.Sort-scrollC',{
+           click:true
+         })
+       })
       },
       indexs(){
         this.SortLi=this.sortList[this.indexs].subCateList
@@ -39,6 +46,8 @@
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
+  .Sort-scrollC
+    height 530px
     .Sort
       position: relative;
       width: 100%;

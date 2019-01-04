@@ -7,16 +7,16 @@
           <img src="//yanxuan.nosdn.127.net/bd139d2c42205f749cd4ab78fa3d6c60.png" alt="">
         </div>
         <div class="Person-input">
-          <div class="Person-phone" @click="$router.replace('phone')">
+          <div class="Person-phone" @click="$router.push('/phone')">
             <i class="iconfont icon-shouji1"></i>
             <span>手机号码登录</span>
           </div>
-          <div class="Person-postbox ">
+          <div class="Person-postbox " @click="$router.push('/postbox')">
             <i class="iconfont icon-xinfeng"></i>
             <span>邮箱账号登录</span>
           </div>
           <div class="Person-register">
-            <span >手机号快捷注册</span>
+            <span @click="$router.push('/register')">手机号快捷注册</span>
             <i class="iconfont icon-jiantouyou"></i>
           </div>
         </div>
