@@ -9,12 +9,12 @@
         <div class="login-import">
           <!--input-->
           <div class="input-top">
-            <input type="text" placeholder="邮箱账号">
+            <input type="text" placeholder="邮箱账号" v-model="mailbox">
           </div>
           <div class="input-bottom">
-            <input type="text" placeholder="密码">
+            <input type="password" placeholder="密码" v-model="pwd">
           </div>
-          <!--使用密码登录-->
+          <!--注册账号-->
           <div class="login-bottom">
             <div class="left">
               <span>注册账号</span>
@@ -24,8 +24,8 @@
             </div>
           </div>
           <!--按钮-->
-          <div class="Person-phone">
-            <span>登录</span>
+          <div class="Person-phone" @click="login">
+            <span >登录</span>
           </div>
           <div class="Person-postbox" @click="$router.back()">
             <span>其他登录方式</span>
@@ -38,8 +38,29 @@
 </template>
 <script>
   import PersonHeader from '../../../components/PersonHeader/PersonHeader.vue'
+  import { MessageBox, Toast} from 'mint-ui';
   export default {
-
+    data(){
+      return{
+        mailbox:'',
+        pwd:''
+      }
+    },
+    computed:{
+      isMailbox(){
+        return /^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$/.test(this.mailbox)
+      }
+    },
+    methods:{
+      login(){
+        const {mailbox,pwd} =this
+        if(!this.isMailbox){
+            return Toast('请输入正确的邮箱地址')
+        }else if(!pwd.trim()){
+          return Toast('请输入密码')
+        }
+      }
+    },
     components:{
       PersonHeader
     },

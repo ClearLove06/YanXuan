@@ -20,7 +20,11 @@
       }
     },
     mounted(){
-      this.$store.dispatch('getRecManual')
+      this.$store.dispatch('getRecManual',()=>{
+        new BScroll('.find-scroll',{
+          link:true
+        })
+      })
     },
     computed:{
       ...mapState(['FindList']),
@@ -32,10 +36,7 @@
             return this.lists.push(i)
           })
         })
-        new BScroll('.find-scroll',{
-          link:true
-        })
-      }
+      },
     },
     components:{
       TypeOne,

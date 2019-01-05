@@ -1,5 +1,5 @@
 <template>
-  <div class="update-scroll">
+  <div class="update-scroll" >
     <div>
       <div class="update" v-for="(li,index) in Update">
         <a href="javascript:;">
@@ -8,7 +8,7 @@
         </a>
         <ul class="update-nav">
           <li  v-for="(c,index) in li.itemList" v-if="li.itemList[index]">
-            <img :src="c.itemUrl" alt="">
+            <img v-lazy="c.itemUrl" alt="">
           </li>
         </ul>
         <div class="update-look">
@@ -28,10 +28,12 @@
       ...mapState(['Update']),
     },
     mounted(){
-      this.$store.dispatch('getUpdate')
-      this.scroll = new BScroll ('.update-scroll',{
-        click:true,
-        pullUpLoad: true
+      this.timeoutId =  null
+      this.$store.dispatch('getUpdate',()=>{
+        this.scroll = new BScroll ('.update-scroll',{
+          click:true,
+          pullUpLoad: true
+        })
       })
     },
     watch:{
@@ -42,9 +44,14 @@
             pullUpLoad:true
           })
           this.scroll.on('pullingUp',()=>{
-            this.$store.dispatch('getUpdate',()=>{
-              this.scroll.finishPullUp()
-            })
+            if(this.timeoutId !==null){
+              clearTimeout(this.timeoutId)
+            }
+            this.timeoutId = setTimeout(()=>{
+              this.$store.dispatch('getUpdate',()=>{
+                this.scroll.finishPullUp()
+              })
+            },2000)
           })
         })
       }

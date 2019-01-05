@@ -3,7 +3,6 @@
 import {
   RECEIVE_CATELIST,
   RECEIVE_SORTLIST,
-  RECEIVE_TOGGLEID,
   RECEIVE_FINDTAB,
   RECEIVE_RECMANUAL,
   RECEIVE_TABDATA,
@@ -13,7 +12,8 @@ import {
   RECEIVE_DATATWO,
   RECEIVE_DATATHREE,
   RECEIVE_REQSEARCH,
-  RECEIVE_SEARCHLIST
+  RECEIVE_SEARCHLIST,
+  RECEIVE_SORTID
 }from './mutations-type'
 
 export default {
@@ -25,8 +25,8 @@ export default {
   [RECEIVE_SORTLIST] (state,{sortList}) {
     state.sortList = sortList
   },
-  [RECEIVE_TOGGLEID] (state,{index}) {
-    state.index = index
+  [RECEIVE_SORTID] (state,{SortId}) {
+    state.SortId = SortId
   },
   [RECEIVE_FINDTAB] (state,{FindTab}) {
     state.FindTab = FindTab
@@ -41,7 +41,9 @@ export default {
     state.Update = state.Update.concat(Update)
   },
   [RECEIVE_HOMEDATA] (state,{HomeData}) {
-    state.HomeData = state.HomeData.concat(HomeData)
+    HomeData.forEach((item,index) => {
+      state.HomeData.push(item)
+    })
   },
 
 
@@ -60,6 +62,8 @@ export default {
   },
   [RECEIVE_SEARCHLIST] (state,{SearchList}) {
     state .SearchList = SearchList
-  }
+  },
+
+
 
 }

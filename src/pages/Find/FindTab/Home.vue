@@ -1,11 +1,11 @@
 <template>
   <div class="home-scroll">
-    <div>
+    <div ref="height">
       <div class="home" v-for="(h,index) in HomeData">
         <a href="javascript:;">
           <div class="home-title">{{h.title}}</div>
           <div class="home-img">
-            <img :src="h.picUrl" alt="">
+            <img v-lazy="h.picUrl" alt="">
           </div>
           <div class="home-look">
             <i class="iconfont icon-shequneiicon-"></i>
@@ -22,39 +22,44 @@
   import {mapState} from 'vuex'
   export default {
     computed:{
-      ...mapState(['HomeData'])
+      ...mapState(['HomeData']),
+    },
+    methods:{
+      _inScroll(){
+        if(!this.scroll){
+          this.scroll = new BScroll('.home-scroll',{
+            pullUpLoad:true,
+            click:true
+          })
+        }else{
+          this.scroll.on('pullingUp',()=>{
+            if(this.timeoutId !== null){
+              clearTimeout(this.timeoutId)
+            }else{
+              this.timeoutId = setTimeout(()=>{
+                this.$store.dispatch('getHomeData')
+                this.scroll.finishPullUp()
+              },1000)
+            }
+          })
+        }
+      }
     },
     mounted(){
+      this.timeoutId = null
       this.$store.dispatch('getHomeData')
-      this.scroll = new BScroll('.home-scroll',{
-        pullUpLoad: {
-          click:true,
-          threshold: 50
-        }
-      })
+      this._inScroll()
     },
     watch:{
       HomeData(){
-        this.$nextTick(()=>{
-          this.scroll = new BScroll('.home-scroll',{
-            pullUpLoad: {
-              click:true,
-              threshold: 50
-            }
-          })
-          this.scroll.on('pullingUp',()=>{
-            this.$store.dispatch('getHomeData',()=>{
-              this.scroll.finishPullUp()
-            })
-          })
-        })
+        this._inScroll()
       }
     }
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
   .home-scroll
-    height 530px
+    height 500px
     .home
       width: 100%;
       background: #fff;

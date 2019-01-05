@@ -8,19 +8,20 @@
       </div>
     </div>
     <!--左-->
-    <div class="sort-left">
+    <div class="sort-left" >
       <ul class="sort-left-list">
         <li v-for="(List,index) in sortList"
             :key="List.id"
-            :class="{active:indexs === index}"
-            @click="toggleId(index)">
-          <a href="javascript:;">{{List.name}}</a>
+            :class="{active:List.id == $route.query.categoryId}"
+            @click="toggleId(List.id)">
+          <a  class="a1" href="javascript:;" @click="$router.replace(`/sort/sortlist?categoryId=${List.id}` )">{{List.name}}</a>
         </li>
       </ul>
     </div>
     <!--右-->
     <div class="sort-right">
-      <SortList :indexs="indexs" :sortList="sortList"/>
+        <router-view/>
+      <!--<SortList :indexs="indexs" :sortList="sortList"/>-->
     </div>
   </div>
 </template>
@@ -29,13 +30,8 @@
   import BScroll from 'better-scroll'
   import {mapState} from 'vuex'
   export default {
-    data(){
-      return{
-        indexs:0,
-      }
-    },
     computed:{
-      ...mapState(['sortList','index']),
+      ...mapState(['sortList']),
     },
     mounted(){
       this.$store.dispatch('getSortList')
@@ -44,13 +40,10 @@
       })
     },
     methods: {
-      toggleId (index){
-        this.indexs = index
+      toggleId (SortId){
+        this.$store.dispatch('getSortId',SortId)
       },
     },
-    components:{
-      SortList
-    }
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" scoped>
@@ -94,6 +87,7 @@
       width: 2.16rem;
       background-color: #fff;
       height 95%
+      border-right 1px solid #eee
       .sort-left-list
         padding-bottom: 1.84rem;
         padding-top: .53333rem
@@ -106,11 +100,11 @@
           box-sizing border-box
           &.active
             border-left 3px solid #ab2b2b
-            >a
+            .a1
               color: #ab2b2b;
           &:first-child
             margin-top:0;
-          >a
+          .a1
             display: block;
             color: #333;
             font-size: .37333rem;

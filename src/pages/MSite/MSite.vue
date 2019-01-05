@@ -16,7 +16,7 @@
             <li v-for="(cateList,index) in cateLists">{{cateList.name}}</li>
           </ul>
         </div>
-        <div class="toggle">
+        <div class="toggle" @click="isShow = !isShow">
           <div class="icon"></div>
         </div>
       </div>
@@ -462,6 +462,12 @@
   import 'swiper/dist/css/swiper.min.css'
   import BScroll from 'better-scroll'
   export default {
+    data(){
+      return{
+        isShow:false
+      }
+
+    },
     computed:{
       ...mapState(['cateLists'])
     },
@@ -486,7 +492,7 @@
         },
       })
 
-    }
+    },
   }
 </script>
 <style lang="stylus" rel="stylesheet/stylus" `>

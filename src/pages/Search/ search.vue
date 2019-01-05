@@ -56,7 +56,7 @@
         this.timeout = setTimeout(()=>{
           const {keywordPrefix} = this
           this.$store.dispatch('getSearchList',keywordPrefix)
-        },2000)
+        },500)
       }
     }
   }

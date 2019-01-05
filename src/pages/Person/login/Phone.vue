@@ -9,12 +9,12 @@
           <div class="login-import">
             <!--input-->
             <div class="input-top">
-              <input type="text" placeholder="请输入手机号">
+              <input type="text" placeholder="请输入手机号" v-model="phone">
             </div>
             <div class="input-bottom">
-              <input type="text" placeholder="请输入短信验证">
+              <input type="text" placeholder="请输入短信验证" v-model="code" >
               <div>
-                <span>获取验证码</span>
+                <span @click="getCode">{{computeTime <= 0 ? '获取验证码': computeTime }}</span>
               </div>
             </div>
             <!--使用密码登录-->
@@ -27,8 +27,8 @@
               </div>
             </div>
             <!--按钮-->
-            <div class="Person-phone">
-              <span>登录</span>
+            <div class="Person-phone" @click.prevent="login">
+              <span >登录</span>
             </div>
             <div class="Person-postbox" @click="$router.back()">
               <span>其他登录方式</span>
@@ -44,7 +44,62 @@
 </template>
 <script>
   import PersonHeader from '../../../components/PersonHeader/PersonHeader.vue'
+  import {reqSendCode} from '../../../api'
+  import { MessageBox, Toast} from 'mint-ui';
   export default {
+    data(){
+      return{
+        phone:'',  //手机号
+        code:'',    //密码
+        computeTime:0, // 验证码倒计时
+      }
+    },
+    computed:{
+      isRightPhone(){
+        return /^1\d{10}$/.test(this.phone)
+      },
+      isRightCode(){
+        return /^\d{6}$/.test(this.code)
+      }
+    },
+    methods:{
+      async getCode(){
+        if(this.computeTime>0){
+          return
+        }
+        if(!this.isRightPhone){
+          return Toast('请输入正确的手机号')
+        }
+        this.computeTime = 30
+        const intervalId = setInterval(()=>{
+          this.computeTime--
+          if(this.computeTime <= 0 ){
+            this.computeTime = 0
+            clearInterval(intervalId)
+          }
+        },1000)
+
+        const result = await reqSendCode(this.phone)
+        if(result.code === 0){
+          Toast('发送成功')
+          this.computeTime = 0
+        }else{
+          MessageBox.alert(result.msg)
+          this.computeTime = 0
+        }
+      },
+      login(){
+        //前台表单验证
+        const {phone,code} = this
+        if(!this.isRightPhone){
+          return Toast('请输入正确的手机号')
+        }else if(!this.isRightCode){
+          return Toast('请输入六位验证码')
+        }
+      }
+
+
+    },
 
     components:{
       PersonHeader

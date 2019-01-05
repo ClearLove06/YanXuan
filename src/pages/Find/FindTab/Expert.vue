@@ -1,5 +1,5 @@
 <template>
-  <div class="better-scroll">
+  <div class="better-scroll" >
     <div class="box" ref="picsUl">
       <div class="content-list" v-for="(li,index) in TabData">
         <TypeOne :li="li" v-if="li.style===1"/>
@@ -16,6 +16,7 @@
   import TypeTwo from '../../../components/FindList/TypeTwo/TypeTwo.vue'
   export default {
     mounted(){
+      this.timeoutId =  null
       this.$store.dispatch('getTabData')
       this.scroll = new BScroll('.better-scroll',{
         click:true,
@@ -33,9 +34,14 @@
             }
           })
           this.scroll.on('pullingUp',()=>{
+            if(this.timeoutId !== null){
+              clearTimeout(this.timeoutId)
+            }
+            this.timeoutId = setTimeout(()=>{
               this.$store.dispatch('getTabData',()=>{
                 this.scroll.finishPullUp()
               })
+            },2000)
           })
         })
       }

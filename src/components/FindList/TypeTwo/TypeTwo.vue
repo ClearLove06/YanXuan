@@ -3,7 +3,7 @@
     <div class="a2-left">
       <div>
               <span class="content-title">
-                <img :src="li.avatar" alt="">
+                <img v-lazy="li.avatar" alt="">
               </span>
         <span class="content-text">{{li.nickname}}</span>
       </div>
@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="a2-right">
-      <img :src="li.picUrl" alt="">
+      <img v-lazy="li.picUrl" alt="">
     </div>
   </a>
 </template>

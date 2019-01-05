@@ -1,24 +1,24 @@
 <template>
-  <div class="share-scrollC">
+  <div class="share-scrollC" v-if="shareDataThree">
     <div>
       <div class="share">
         <div class="share-top">
-          <p >让生活更好的N种方法</p>
+          <p v-if="shareDataOne.recModule">{{shareDataOne.recModule.recommendName}}</p>
         </div>
         <div class="share-title">
           <p >{{shareDataThree.title}}</p>
         </div>
         <div class="share-nav">
-          <ul ref="ulWidth">
+          <ul ref="ulWidth" v-if="shareDataThree.lookList">
             <li v-for="(s,index) in shareDataThree.lookList">
-              <img :src="s.banner.picUrl" alt="">
+              <img v-lazy="s.banner.picUrl" alt="">
             </li>
           </ul>
         </div>
       </div>
       <div class="share-content">
         <div class="content-title">
-          <p>TA们的严选生活</p>
+          <p v-if="shareDataOne.recModule">{{shareDataOne.recModule.globalName}}</p>
         </div>
         <div class="content-tap">
           <ul  class="content-warp">
@@ -38,7 +38,7 @@
             <li v-for="(s,index) in shareDataTwo" :key="index" v-show="index%2 === 1">
               <div class="left-warp">
                 <div class="box1">
-                  <img :src="s.bannerInfo.picUrl" alt="">
+                  <img v-lazy="s.bannerInfo.picUrl" alt="">
                 </div>
                 <p>{{s.content}}</p>
                 <div class="box2">
@@ -58,7 +58,7 @@
             <li v-for="(s,index) in shareDataTwo" :key="index"  v-show="index%2 !== 1">
               <div class="left-warp">
                 <div class="box1">
-                  <img :src="s.bannerInfo.picUrl" alt="">
+                  <img v-lazy="s.bannerInfo.picUrl" alt="">
                 </div>
                 <p>{{s.content}}</p>
                 <div class="box2">
@@ -92,6 +92,7 @@
       ...mapState(['shareDataOne','shareDataTwo','shareDataThree'])
     },
     mounted(){
+      this.timeoutId =  null
       const {page,size,type,id}=this
       this.$store.dispatch('getDataOne')
       this.$store.dispatch('getDataTwo')
@@ -128,10 +129,14 @@
             click:true
           })
           this.scroll.on('pullingUp',()=>{
-            this.$store.dispatch('getDataTwo',()=>{
-              this.scroll.finishPullUp()
-            })
-
+            if(this.timeoutId !== null){
+              clearTimeout(this.timeoutId)
+            }
+            setTimeout(()=>{
+              this.$store.dispatch('getDataTwo',()=>{
+                this.scroll.finishPullUp()
+              })
+            },2000)
           })
         })
       }

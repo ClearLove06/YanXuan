@@ -1,23 +1,23 @@
 <template>
   <div class="footer">
     <ul class="footer-list">
-      <li class="footer-li " :class="{active:$route.path==='/msite'}" @click="$router.replace('/msite')">
+      <li class="footer-li " :class="{active:$route.path.indexOf('/msite')>=0}" @click="$router.replace('/msite')">
           <i class="iconfont icon-shouye"></i>
         <span class="footer-name">首页</span>
       </li>
-      <li class="footer-li" :class="{active:$route.path==='/sort'}" @click="$router.replace('/sort')">
+      <li class="footer-li" :class="{active:$route.path.indexOf('/sort')>=0}" @click="$router.replace('/sort')">
           <i class="iconfont icon-chouti"></i>
         <span class="footer-name">分类</span>
       </li>
-      <li class="footer-li" :class="{active:$route.path==='/find'}" @click="$router.replace('/find')">
+      <li class="footer-li" :class="{active:$route.path.indexOf('/find')>=0}" @click="$router.replace('/find')">
           <i class="iconfont icon-tupian"></i>
         <span class="footer-name">识物</span>
       </li>
-      <li class="footer-li" :class="{active:$route.path==='/shopping'}" @click="$router.replace('/shopping')">
+      <li class="footer-li" :class="{active:$route.path.indexOf('/shopping')>=0}" @click="$router.replace('/shopping')">
           <i class="iconfont icon-cart"></i>
         <span class="footer-name">购物车</span>
       </li>
-      <li class="footer-li" :class="{active:$route.path==='/person'}" @click="$router.replace('/person')">
+      <li class="footer-li" :class="{active:$route.path.indexOf('/person')>=0}" @click="$router.replace('/person')">
           <i class="iconfont icon-geren"></i>
         <span class="footer-name">个人</span>
       </li>

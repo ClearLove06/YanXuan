@@ -13,7 +13,7 @@ export const RECEIVE_DATATWO = 'receive_datatwo' //
 export const RECEIVE_DATATHREE = 'receive_datathree' //
 export const RECEIVE_REQSEARCH = 'receive_reqsearch' //
 export const RECEIVE_SEARCHLIST = 'receive_searchlist' //
-
+export const RECEIVE_SORTID = 'receive_sortid' //
 
 
 

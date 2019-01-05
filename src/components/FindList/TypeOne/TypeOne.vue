@@ -2,13 +2,13 @@
   <a href="javascript:;" class="a1" >
     <div>
       <span class="content-title">
-        <img :src="li.avatar" alt="">
+        <img v-lazy="li.avatar" alt="">
       </span>
       <span class="content-text">{{li.nickname}}</span>
     </div>
     <div>{{li.title}}</div>
     <div>
-      <img :src="li.picUrl" alt="">
+      <img v-lazy="li.picUrl" alt="">
     </div>
     <div>
       <i class="iconfont icon-shequneiicon-"></i>

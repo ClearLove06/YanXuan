@@ -23,7 +23,8 @@ import {
   RECEIVE_DATATWO,
   RECEIVE_DATATHREE,
   RECEIVE_REQSEARCH,
-  RECEIVE_SEARCHLIST
+  RECEIVE_SEARCHLIST,
+  RECEIVE_SORTID
 }from './mutations-type'
 let num = 0
 let page = 0
@@ -51,18 +52,19 @@ export default {
       commit(RECEIVE_FINDTAB,{FindTab})
     }
   },
-  async getRecManual({commit}){
+  async getRecManual({commit},cb){
     const result = await reqRecManual()
     if(result.code==="200"){
       const FindList = result.data
       commit(RECEIVE_RECMANUAL,{FindList})
+      typeof cb==='Function'&&cb()
     }
   },
   async getTabData({commit,state},cb){
-    num++
-    if(state.Update>0||state.HomeData>0){
+    if(state.Update.length>0 && state.TabData.length>0 && state.HomeData.length>0){
       return
     }
+    num++
     const result = await reqTabData(num,5,4)
     if(result.code ==="200"){
       const TabData = result.data.result
@@ -71,10 +73,10 @@ export default {
     }
   },
   async getUpdate({commit,state},cb){
-    page++
-    if(state.TabData>0||state.HomeData>0){
+    if(state.Update.length>0 && state.TabData.length>0 && state.HomeData.length>0){
       return
     }
+    page++
     console.log(page);
     const result = await reqTabData(page,5,5)
     if(result.code ==="200"){
@@ -83,16 +85,15 @@ export default {
       typeof cb==='Function'&&cb()
     }
   },
-  async getHomeData({commit,state},cb){
-    home++
-    if(state.TabData>0||state.Update>0){
+  async getHomeData({commit,state}){
+    if(state.Update.length>0 && state.TabData.length>0 && state.HomeData.length>0){
       return
     }
+    home++
     const result = await reqTabData(home,5,6)
     if(result.code ==="200"){
       const HomeData = result.data.result
       commit(RECEIVE_HOMEDATA,{HomeData})
-      typeof cb==='Function'&&cb()
     }
   },
   //  晒新页面头部
@@ -136,6 +137,10 @@ export default {
       const SearchList = result.data
       commit(RECEIVE_SEARCHLIST,{SearchList})
     }
+  },
+
+  getSortId({commit},SortId){
+    commit(RECEIVE_SORTID,{SortId})
   }
 
 }
