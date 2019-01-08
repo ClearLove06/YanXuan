@@ -22,7 +22,7 @@
     mounted(){
       this.$store.dispatch('getRecManual',()=>{
         new BScroll('.find-scroll',{
-          link:true
+          click:true
         })
       })
     },
@@ -35,6 +35,9 @@
           item.topics.forEach((i,index)=>{
             return this.lists.push(i)
           })
+        })
+        new BScroll('.find-scroll',{
+          click:true
         })
       },
     },

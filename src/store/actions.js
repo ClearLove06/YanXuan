@@ -52,15 +52,14 @@ export default {
       commit(RECEIVE_FINDTAB,{FindTab})
     }
   },
-  async getRecManual({commit},cb){
+  async getRecManual({commit}){
     const result = await reqRecManual()
     if(result.code==="200"){
       const FindList = result.data
       commit(RECEIVE_RECMANUAL,{FindList})
-      typeof cb==='Function'&&cb()
     }
   },
-  async getTabData({commit,state},cb){
+  async getTabData({commit,state}){
     if(state.Update.length>0 && state.TabData.length>0 && state.HomeData.length>0){
       return
     }
@@ -69,10 +68,9 @@ export default {
     if(result.code ==="200"){
       const TabData = result.data.result
       commit(RECEIVE_TABDATA,{TabData})
-      typeof cb==='Function'&&cb()
     }
   },
-  async getUpdate({commit,state},cb){
+  async getUpdate({commit,state}){
     if(state.Update.length>0 && state.TabData.length>0 && state.HomeData.length>0){
       return
     }
@@ -82,7 +80,6 @@ export default {
     if(result.code ==="200"){
       const Update = result.data.result
       commit(RECEIVE_GETUPDATE,{Update})
-      typeof cb==='Function'&&cb()
     }
   },
   async getHomeData({commit,state}){
@@ -104,13 +101,12 @@ export default {
       commit(RECEIVE_DATAONE,{shareDataOne})
     }
   },
-  async getDataTwo({commit,state},cb){
+  async getDataTwo({commit,state}){
     share++
     const result = await reqDataTwo(share,20,1)
     if(result.code ==="200"){
       const shareDataTwo = result.data.topicList
       commit(RECEIVE_DATATWO,{shareDataTwo})
-      typeof cb==='Function'&&cb()
     }
   },
 //  晒新页面list

@@ -28,21 +28,23 @@
       _inScroll(){
         if(!this.scroll){
           this.scroll = new BScroll('.home-scroll',{
-            pullUpLoad:true,
-            click:true
+            click:true,
+            pullUpLoad: {
+              threshold:1000
+            }
           })
         }else{
           this.scroll.on('pullingUp',()=>{
             if(this.timeoutId !== null){
               clearTimeout(this.timeoutId)
-            }else{
-              this.timeoutId = setTimeout(()=>{
-                this.$store.dispatch('getHomeData')
-                this.scroll.finishPullUp()
-              },1000)
             }
+            this.timeoutId = setTimeout(()=>{
+              this.$store.dispatch('getHomeData')
+            },1000)
+            this.scroll.finishPullUp()
           })
         }
+        this.scroll.refresh()
       }
     },
     mounted(){

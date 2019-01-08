@@ -27,33 +27,40 @@
     computed:{
       ...mapState(['Update']),
     },
+    methods:{
+      _inScroll(){
+        if(!this.scroll){
+          this.scroll = new BScroll('.update-scroll',{
+            click:true,
+            pullUpLoad: {
+              threshold:1000
+            }
+          })
+        }else{
+          this.scroll.on('pullingUp',()=>{
+            if(this.timeoutId !== null){
+              clearTimeout(this.timeoutId)
+            }
+            this.timeoutId = setTimeout(()=>{
+              this.$store.dispatch('getUpdate')
+            },500)
+            this.scroll.finishPullUp()
+          })
+        }
+        this.scroll.refresh()
+      }
+    },
     mounted(){
       this.timeoutId =  null
-      this.$store.dispatch('getUpdate',()=>{
-        this.scroll = new BScroll ('.update-scroll',{
-          click:true,
-          pullUpLoad: true
-        })
-      })
+      this.$store.dispatch('getUpdate')
+      this._inScroll()
     },
     watch:{
       Update(){
         this.$nextTick(()=>{
-          this.scroll = new BScroll ('.update-scroll',{
-            click:true,
-            pullUpLoad:true
-          })
-          this.scroll.on('pullingUp',()=>{
-            if(this.timeoutId !==null){
-              clearTimeout(this.timeoutId)
-            }
-            this.timeoutId = setTimeout(()=>{
-              this.$store.dispatch('getUpdate',()=>{
-                this.scroll.finishPullUp()
-              })
-            },2000)
-          })
+          this._inScroll()
         })
+
       }
     }
   }

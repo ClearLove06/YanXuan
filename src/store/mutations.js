@@ -35,15 +35,13 @@ export default {
     state.FindList = FindList
   },
   [RECEIVE_TABDATA] (state,{TabData}) {
-    state.TabData  = state.TabData.concat(TabData)
+    TabData.forEach((item =>state.TabData.push(item) ))
   },
   [RECEIVE_GETUPDATE] (state,{Update}) {
-    state.Update = state.Update.concat(Update)
+    Update.forEach((item =>state.Update.push(item) ))
   },
   [RECEIVE_HOMEDATA] (state,{HomeData}) {
-    HomeData.forEach((item,index) => {
-      state.HomeData.push(item)
-    })
+    HomeData.forEach(item => state.HomeData.push(item))
   },
 
 
@@ -51,7 +49,7 @@ export default {
     state.shareDataOne = shareDataOne
   },
   [RECEIVE_DATATWO] (state,{shareDataTwo}) {
-    state.shareDataTwo = state.shareDataTwo.concat(shareDataTwo)
+    shareDataTwo.forEach((item,index) => state.shareDataTwo.push(item))
   },
   [RECEIVE_DATATHREE] (state,{shareDataThree}) {
     state.shareDataThree = shareDataThree

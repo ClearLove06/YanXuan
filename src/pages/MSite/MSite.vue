@@ -21,7 +21,7 @@
         </div>
       </div>
     </header>
-   <div class="header-scroll">
+    <div class="header-scroll">
      <div>
        <div class="swiper-container">
          <div class="swiper-wrapper">
@@ -317,139 +317,6 @@
              </div>
            </div>
          </div>
-         <!--商家直销-->
-         <div class="content-directSupply" >
-           <div class="directSupply-title">
-             <div class="title-left">品牌制造商直供</div>
-             <div class="title-right">
-               更多
-               <i></i>
-             </div>
-           </div>
-           <ul class="directSupply-list">
-             <li>
-               <div>
-                 <h4>海外制造商</h4>
-                 <div>
-                   <span>9.9元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>CK制造商</h4>
-                 <div>
-                   <span>25元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>新秀丽制造商</h4>
-                 <div>
-                   <span>39.9元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>MUJI制造商</h4>
-                 <div>
-                   <span>35元起</span>
-                 </div>
-               </div>
-             </li>
-           </ul>
-         </div>
-         <!--商家直销-->
-         <div class="content-directSupply" >
-           <div class="directSupply-title">
-             <div class="title-left">品牌制造商直供</div>
-             <div class="title-right">
-               更多
-               <i></i>
-             </div>
-           </div>
-           <ul class="directSupply-list">
-             <li>
-               <div>
-                 <h4>海外制造商</h4>
-                 <div>
-                   <span>9.9元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>CK制造商</h4>
-                 <div>
-                   <span>25元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>新秀丽制造商</h4>
-                 <div>
-                   <span>39.9元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>MUJI制造商</h4>
-                 <div>
-                   <span>35元起</span>
-                 </div>
-               </div>
-             </li>
-           </ul>
-         </div>
-         <!--商家直销-->
-         <div class="content-directSupply" >
-           <div class="directSupply-title">
-             <div class="title-left">品牌制造商直供</div>
-             <div class="title-right">
-               更多
-               <i></i>
-             </div>
-           </div>
-           <ul class="directSupply-list">
-             <li>
-               <div>
-                 <h4>海外制造商</h4>
-                 <div>
-                   <span>9.9元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>CK制造商</h4>
-                 <div>
-                   <span>25元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>新秀丽制造商</h4>
-                 <div>
-                   <span>39.9元起</span>
-                 </div>
-               </div>
-             </li>
-             <li>
-               <div>
-                 <h4>MUJI制造商</h4>
-                 <div>
-                   <span>35元起</span>
-                 </div>
-               </div>
-             </li>
-           </ul>
-         </div>
-
 
        </div>
      </div>

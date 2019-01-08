@@ -97,10 +97,7 @@
       this.$store.dispatch('getDataOne')
       this.$store.dispatch('getDataTwo')
       this.$store.dispatch('getDataThree',{id})
-      this.scroll = new BScroll('.share-scrollC',{
-        pullUpLoad:true,
-        click:true
-      })
+      this. _inScroll()
     },
     methods:{
       __initScroll(){
@@ -114,6 +111,27 @@
           click:true,
           scrollX:true
         })
+      },
+      _inScroll(){
+        if(!this.scroll){
+          this.scroll = new BScroll('.share-scrollC',{
+            click:true,
+            pullUpLoad: {
+              threshold:1000
+            }
+          })
+        }else{
+          this.scroll.on('pullingUp',()=>{
+            if(this.timeoutId !== null){
+              clearTimeout(this.timeoutId)
+            }
+            this.timeoutId = setTimeout(()=>{
+              this.$store.dispatch('getDataTwo')
+            },1000)
+            this.scroll.finishPullUp()
+          })
+        }
+        this.scroll.refresh()
       }
     },
     watch:{
@@ -123,22 +141,7 @@
         })
       },
       shareDataTwo(){
-        this.$nextTick(()=>{
-          this.scroll = new BScroll('.share-scrollC',{
-            pullUpLoad:true,
-            click:true
-          })
-          this.scroll.on('pullingUp',()=>{
-            if(this.timeoutId !== null){
-              clearTimeout(this.timeoutId)
-            }
-            setTimeout(()=>{
-              this.$store.dispatch('getDataTwo',()=>{
-                this.scroll.finishPullUp()
-              })
-            },2000)
-          })
-        })
+        this. _inScroll()
       }
 
     }
@@ -153,11 +156,11 @@
       align-items: center
       flex-direction: column
       background-color: #fff;
-      padding-top: .37333rem;
-      margin-bottom: .26667rem;
-      padding-bottom: .53333rem;
+      padding-top .37333rem;
+      margin-bottom .26667rem;
+      padding-bottom .53333rem;
       .share-top
-        margin-bottom: .32rem;
+        margin-bottom .32rem;
         >p
           color: #7f7f7f;
           font-size: .37333rem;

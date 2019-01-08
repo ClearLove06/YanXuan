@@ -18,32 +18,34 @@
     mounted(){
       this.timeoutId =  null
       this.$store.dispatch('getTabData')
-      this.scroll = new BScroll('.better-scroll',{
-        click:true,
-        pullUpLoad: true
-      })
+      this._inScroll()
     },
-    watch:{
-      TabData(){
-        this.$nextTick(()=>{
+    methods:{
+      _inScroll(){
+        if(!this.scroll){
           this.scroll = new BScroll('.better-scroll',{
             click:true,
-            probeType:2,
-            pullUpLoad:{
-              threshold: 50
+            pullUpLoad: {
+              threshold:1000
             }
           })
+        }else{
           this.scroll.on('pullingUp',()=>{
             if(this.timeoutId !== null){
               clearTimeout(this.timeoutId)
             }
             this.timeoutId = setTimeout(()=>{
-              this.$store.dispatch('getTabData',()=>{
-                this.scroll.finishPullUp()
-              })
-            },2000)
+              this.$store.dispatch('getTabData')
+            },1000)
+            this.scroll.finishPullUp()
           })
-        })
+        }
+        this.scroll.refresh()
+      }
+    },
+    watch:{
+      TabData(){
+        this._inScroll()
       }
     },
     computed:{
